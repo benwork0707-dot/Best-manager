@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>المدرب الأفضل · The Best Manager</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-dark q-high">
+
+<!-- ===== Intro / Start ===== -->
+<section id="screen-intro" class="screen active">
+  <div class="intro-bg"></div>
+  <div class="intro-card">
+    <div class="intro-logo">⚽</div>
+    <h1 data-i18n="appTitle"></h1>
+    <p class="muted" data-i18n="tagline"></p>
+    <div class="intro-actions">
+      <button id="btn-continue" class="btn primary" data-i18n="continue"></button>
+      <button id="btn-new" class="btn gold" data-i18n="newCareer"></button>
+      <button id="btn-settings" class="btn ghost" data-i18n="settings"></button>
+    </div>
+    <div class="lang-row" id="intro-langs"></div>
+  </div>
+</section>
+
+<!-- ===== New career: coach name + league/club ===== -->
+<section id="screen-new" class="screen">
+  <header class="topbar">
+    <button class="btn ghost" data-go="intro" data-i18n="back"></button>
+    <h2 data-i18n="newCareer"></h2><span></span>
+  </header>
+  <div class="content">
+    <label class="field"><span data-i18n="coachName"></span>
+      <input id="coach-name" maxlength="24" value="Coach"></label>
+    <div id="league-picker" class="grid-leagues"></div>
+    <div id="club-picker" class="grid-clubs"></div>
+    <div class="row-end"><button id="btn-start-career" class="btn gold big" data-i18n="start"></button></div>
+  </div>
+</section>
+
+<!-- ===== Settings ===== -->
+<section id="screen-settings" class="screen">
+  <header class="topbar">
+    <button class="btn ghost" data-go="back" data-i18n="back"></button>
+    <h2 data-i18n="settings"></h2><span></span>
+  </header>
+  <div class="content narrow">
+    <div class="panel">
+      <h3 data-i18n="language"></h3>
+      <div class="seg" id="set-lang"></div>
+    </div>
+    <div class="panel">
+      <h3 data-i18n="quality"></h3>
+      <div class="seg" id="set-quality">
+        <button data-v="low" data-i18n="low"></button>
+        <button data-v="medium" data-i18n="medium"></button>
+        <button data-v="high" data-i18n="high"></button>
+      </div>
+    </div>
+    <div class="panel">
+      <h3 data-i18n="sound"></h3>
+      <div class="seg" id="set-sound">
+        <button data-v="on" data-i18n="on"></button>
+        <button data-v="off" data-i18n="off"></button>
+      </div>
+    </div>
+    <div class="panel">
+      <h3 data-i18n="theme"></h3>
+      <div class="seg" id="set-theme">
+        <button data-v="dark" data-i18n="dark"></button>
+        <button data-v="light" data-i18n="light"></button>
+      </div>
+    </div>
+    <div class="panel">
+      <button id="btn-reset" class="btn danger" data-i18n="reset"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Game shell (career) ===== -->
+<section id="screen-game" class="screen">
+  <header class="hud">
+    <div class="hud-club"><span id="hud-crest" class="crest"></span><b id="hud-club"></b></div>
+    <div class="hud-stats">
+      <span><small data-i18n="season"></small> <b id="hud-season"></b></span>
+      <span><small data-i18n="week"></small> <b id="hud-week"></b></span>
+      <span><small data-i18n="budget"></small> <b id="hud-budget"></b></span>
+    </div>
+    <button class="btn gold" id="btn-advance" data-i18n="advanceWeek"></button>
+  </header>
+  <div class="game-body">
+    <nav class="sidenav" id="sidenav">
+      <button data-sec="home" data-i18n="home"></button>
+      <button data-sec="squad" data-i18n="squad"></button>
+      <button data-sec="tactics" data-i18n="tactics"></button>
+      <button data-sec="training" data-i18n="training"></button>
+      <button data-sec="transfers" data-i18n="transfers"></button>
+      <button data-sec="tables" data-i18n="tables"></button>
+      <button data-sec="competitions" data-i18n="competitions"></button>
+      <button data-sec="news" data-i18n="news"></button>
+      <button data-sec="press" data-i18n="press"></button>
+      <button data-sec="facilities" data-i18n="facilities"></button>
+      <button data-sec="menu" data-i18n="settings"></button>
+    </nav>
+    <main id="section" class="section"></main>
+  </div>
+</section>
+
+<!-- ===== Match screen ===== -->
+<section id="screen-match" class="screen">
+  <header class="topbar">
+    <span></span><h2 data-i18n="nextMatch"></h2><span></span>
+  </header>
+  <div class="content">
+    <div id="match-head" class="scoreboard"></div>
+    <div class="match-modes">
+      <button id="btn-quick" class="btn primary" data-i18n="quickSim"></button>
+      <button id="btn-pitch" class="btn gold" data-i18n="pitchSim"></button>
+    </div>
+    <div class="pitch-wrap"><canvas id="pitch" width="960" height="600"></canvas></div>
+    <div id="match-log" class="log"></div>
+    <div class="row-end"><button id="btn-match-done" class="btn primary big" data-i18n="continueCareer"></button></div>
+  </div>
+</section>
+
+<!-- ===== Modal ===== -->
+<div id="modal" class="modal hidden">
+  <div class="modal-card">
+    <h3 id="modal-title"></h3>
+    <div id="modal-body"></div>
+    <div class="modal-actions" id="modal-actions"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
